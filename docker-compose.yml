@@ -4,7 +4,7 @@ services:
   fastapi:
     build:
       context: .
-      dockerfile: Dockerfile.fastapi
+      dockerfile: Dockerfile.api
     ports:
       - "8000:805"
     depends_on:
@@ -17,7 +17,7 @@ services:
       context: .
       dockerfile: Dockerfile.streamlit
     ports:
-      - "8501:8501"
+      - "8501:8503"
     networks:
       - my_network
 
