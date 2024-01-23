@@ -31,10 +31,12 @@ def predict_churn_interface(TENURE, MONTANT, FREQUENCE_RECH, REVENUE, ARPU_SEGME
     # Extract probability score and churn status from the API response
     probability_score = prediction_data.get("probability_score", "N/A")
     churn_status = prediction_data.get("churn_status", "N/A")
+   
 
      # Display prediction result in Streamlit
     st.write(f"Prediction: {churn_status}")
     st.write(f"Probability Score: {probability_score}")
+    st.write(f"selected_model: {selected_model}")
 
 # Set up interface
 # Adding title with color
@@ -66,12 +68,13 @@ input_data = {
     "REGULARITY": left_column.slider("How many times are you active for 90 days", 0, 100, 0),
     "FREQ_TOP_PACK": left_column.slider("How many times have you been activated to the top pack packages", 0, 1000, 0),
 }
-
-# Dropdown for model selection
+ 
+  # Dropdown for model selection
 selected_model = st.sidebar.selectbox("Select Model", ["xgb", "dt", "gb"], key="model_selector")
 
 # Call prediction function when a button is clicked
 if st.button("Predict", key="predict_button", help="Click to predict"):
-    # Make sure selected_model is added to input_data before calling the function
-    input_data["selected_model"] = st.sidebar.selectbox("Selected Model", ["xgb", "dt", "gb"])
+    # Make sure selected_model is added to input_data 
+    input_data["selected_model"] = selected_model  # Use the same key here
     predict_churn_interface(**input_data)
+
