@@ -28,7 +28,6 @@ class ChurnFeatures(BaseModel):
 
 # Load your model
 pipeline_1 = joblib.load('model/dt.joblib')
-pipeline = joblib.load('model/gb.joblib')
 pipeline_2 = joblib.load('model/xgb.joblib')
 
 
@@ -38,7 +37,6 @@ pipeline_2 = joblib.load('model/xgb.joblib')
 models = {
     
     "dt": pipeline_1,
-    "gb": pipeline,
     "xgb": pipeline_2,
     }
 
